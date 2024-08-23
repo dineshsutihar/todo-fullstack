@@ -1,9 +1,14 @@
 const express = require("express");
 const routes = require("./routes/todo");
+const mongoose = require("mongoose");
 require("dotenv").config();
 
 const port = process.env.PORT;
 const app = express();
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => console.log("DB Connected Sucessfully"))
+  .catch(() => console.log("Error Connecting to DB"));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
