@@ -2,9 +2,11 @@ const express = require("express");
 const routes = require("./routes/todo");
 const mongoose = require("mongoose");
 require("dotenv").config();
+const cors = require("cors");
 
 const port = process.env.PORT;
 const app = express();
+
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("DB Connected Sucessfully"))
@@ -12,6 +14,7 @@ mongoose
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
 app.use("/api/v1/", routes);
 
