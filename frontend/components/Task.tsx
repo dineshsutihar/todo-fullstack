@@ -1,4 +1,4 @@
-import { GrMore } from "react-icons/gr";
+import { GrMore, GrTrash } from "react-icons/gr";
 
 type TaskProps = {
     title: string,
@@ -23,6 +23,9 @@ export default function Task({ title, description }: TaskProps): JSX.Element {
                 <GrMore />
             </div>
             <p className="text-sm">{description}</p>
-        </div>
+            <div className="w-full flex justify-end pt-3">
+                <button className=" rounded-lg flex text-sm justify-center items-center align-baseline gap-1"  > <input type="checkbox" />Done</button>
+            </div>
+        </div >
     )
 }
