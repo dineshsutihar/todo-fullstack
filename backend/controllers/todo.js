@@ -1,9 +1,9 @@
 const Todo = require("../model/Todo");
 
 const saveTodo = async (req, res) => {
-  const { title } = req.body;
+  const { title, description } = req.body;
   try {
-    const newTodo = new Todo({ title });
+    const newTodo = new Todo({ title, description });
     await newTodo.save();
     const allTodo = await Todo.find();
 

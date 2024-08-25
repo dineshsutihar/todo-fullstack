@@ -12,7 +12,7 @@ const todoSchema = new mongoose.Schema(
       default: false,
     },
     description: {
-      type: string,
+      type: String,
       required: false,
     },
   },
