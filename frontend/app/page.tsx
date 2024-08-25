@@ -1,4 +1,5 @@
 "use client"
+import CreateBlog from "@/components/CreateTodo";
 import Nav from "@/components/Nav";
 import Sidebar from "@/components/Sidebar";
 import Task from "@/components/Task";
@@ -27,7 +28,6 @@ export default function Home() {
     <UserContextProvider>
       <main className="p-11">
         <Nav />
-
         <section className="flex">
           <Sidebar />
           <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">

@@ -1,5 +1,5 @@
 "use client"
-import { GrMore, GrTrash } from "react-icons/gr";
+import { GrMore } from "react-icons/gr";
 import Editor from "./Editor";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -44,7 +44,7 @@ export default function Task({ title, description, unique, status }: TaskProps):
         if (length > 100) return 2;
         return 1;
     }
-    const bentoGrid: number = calculateRowSpan(description = "demo");
+    const bentoGrid: number = calculateRowSpan(description || "");
 
     return (
         <div className={`bg-yellow-200 relative p-4 rounded-xl min-h-min lg:row-span-${bentoGrid}`}>
