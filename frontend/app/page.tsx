@@ -34,7 +34,7 @@ export default function Home() {
             {tasks.map(({ title, status, description, _id }, index) => (
               console.log(title),
 
-              <Task key={index} unique={_id} title={title} status={status} description={description} />
+              <Task key={index} unique={_id} title={title} status={status} description={description} setTasks={setTasks} />
             ))}
           </section>
         </section>

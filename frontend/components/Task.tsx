@@ -8,15 +8,17 @@ type TaskProps = {
     title: string,
     description?: string,
     unique: number,
-    status: boolean
+    status: boolean,
+    setTasks: Function,
+
 }
 
-export default function Task({ title, description, unique, status }: TaskProps): JSX.Element {
+export default function Task({ title, description, unique, status, setTasks }: TaskProps): JSX.Element {
     const [done, setDone] = useState(status);
     const [edit, setEdit] = useState(false);
 
     useEffect(() => {
-        const fetchData = async () => {
+        const putData = async () => {
             try {
                 const response = await axios.put(`http://localhost:8000/api/v1/${unique}`, {
                     status: done
@@ -32,7 +34,7 @@ export default function Task({ title, description, unique, status }: TaskProps):
                 console.error("Error fetching tasks:", error);
             }
         }
-        fetchData();
+        putData();
     }, [done, unique])
 
 
@@ -57,7 +59,7 @@ export default function Task({ title, description, unique, status }: TaskProps):
                 <input onClick={() => setDone(!done)} type="checkbox" checked={done ? true : false} id={`checkbox${unique}`} />
                 <label htmlFor={`checkbox${unique}`} className=" rounded-lg text-sm" >Done</label>
             </div>
-            {edit && <Editor />}
+            {edit && <Editor id={unique} setEdit={setEdit} setTasks={setTasks} />}
         </div >
     )
 }
