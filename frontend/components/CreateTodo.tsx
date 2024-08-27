@@ -41,6 +41,7 @@ export default function CreateTodo({ createTodo, setCreateTodo, setTask }: Creat
                     placeholder="Write the title of Your Todo..."
                     className="w-full p-2 mb-4 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-500"
                     onChange={(e) => setTitle(e.target.value)}
+                    required
                 />
                 <textarea
                     name="description"

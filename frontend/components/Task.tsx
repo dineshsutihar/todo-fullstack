@@ -1,7 +1,7 @@
 "use client"
 import { GrMore } from "react-icons/gr";
 import Editor from "./Editor";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 
 type TaskProps = {
@@ -39,17 +39,17 @@ export default function Task({ title, description, unique, status, setTasks }: T
 
 
 
-    function calculateRowSpan(description: string): number {
-        const length = description.length;
-        if (length > 300) return 4;
-        if (length > 200) return 3;
-        if (length > 100) return 2;
+    const calculateRowSpan = useCallback((description?: string) => {
+        const length = description?.length || 1;
+        if (length > 400) return 4;
+        if (length > 300) return 3;
+        if (length > 200) return 2;
+        if (length > 100) return 1;
         return 1;
-    }
-    const bentoGrid: number = calculateRowSpan(description || "");
+    }, [])
 
     return (
-        <div className={`bg-yellow-200 relative p-4 rounded-xl min-h-min lg:row-span-${bentoGrid}`}>
+        <div className={`bg-yellow-200 relative p-4 rounded-xl h-min`}>
             <div className="flex justify-between align-baseline items-baseline gap-12">
                 {done ? <s><h1 className="font-bold text-x pb-3">{title}</h1></s> : <h1 className="font-bold text-x pb-3">{title}</h1>}
                 <GrMore className="text-lg text-nowrap" onClick={() => setEdit(!edit)} />

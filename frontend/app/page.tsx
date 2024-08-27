@@ -6,6 +6,8 @@ import Task from "@/components/Task";
 import { UserContextProvider } from "@/context/UserContextProvider";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { GiArrowhead } from "react-icons/gi";
+import { GrTopCorner } from "react-icons/gr";
 
 export default function Home() {
   const [tasks, setTasks] = useState([]);
@@ -31,11 +33,21 @@ export default function Home() {
         <section className="flex">
           <Sidebar />
           <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
-            {tasks.map(({ title, status, description, _id }, index) => (
-              console.log(title),
+            {
+              tasks.length > 0 ? (
+                tasks.map(({ title, status, description, _id }, index) => (
+                  <Task key={index} unique={_id} title={title} status={status} description={description} setTasks={setTasks} />
+                ))
+              ) : (
+                <h1 className="flex w-96 flex-nowrap absolute top-[40%] left-[40%] h-28 ">
+                  No Todo, Click on Plus button to create one.
+                  <GiArrowhead className="inline-block transform -rotate-90 translate-x-2 translate-y-1" />
+                </h1>
 
-              <Task key={index} unique={_id} title={title} status={status} description={description} setTasks={setTasks} />
-            ))}
+
+              )
+            }
+
           </section>
         </section>
       </main>
