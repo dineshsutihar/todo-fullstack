@@ -4,9 +4,10 @@ import { useCallback, useEffect, useState } from "react"
 type CreateTodoProps = {
     createTodo: boolean,
     setCreateTodo: Function,
+    setTask: Function
 }
 
-export default function CreateTodo({ createTodo, setCreateTodo }: CreateTodoProps): JSX.Element {
+export default function CreateTodo({ createTodo, setCreateTodo, setTask }: CreateTodoProps): JSX.Element {
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
 
@@ -21,13 +22,12 @@ export default function CreateTodo({ createTodo, setCreateTodo }: CreateTodoProp
                 }
             })
             const data = response.data
-            console.log(data)
-            // Optionally, close the modal after creating the 
+            setTask(data.todos)
             setCreateTodo(false)
         } catch (error) {
             console.error("Error creating Todo:", error)
         }
-    }, [title, description, setCreateTodo])
+    }, [title, description, setCreateTodo, setTask])
 
     return (
         <div className="absolute inset-0 bg-[rgba(108,117,125,0.75)] w-full h-full z-10 flex items-center justify-center">
@@ -52,8 +52,8 @@ export default function CreateTodo({ createTodo, setCreateTodo }: CreateTodoProp
                     onChange={(e) => setDescription(e.target.value)}
                 ></textarea>
                 <div className="flex justify-between gap-2">
-                    <button className="bg-slate-500 text-white rounded-lg px-4 py-2 hover:bg-slate-600">Create</button>
                     <button onClick={() => setCreateTodo(!createTodo)} className="bg-red-500 text-white rounded-lg px-4 py-2 hover:bg-red-600">Cancel</button>
+                    <button onClick={postTodo} className="bg-slate-500 text-white rounded-lg px-4 py-2 hover:bg-slate-600">Create</button>
                 </div>
             </div>
         </div>

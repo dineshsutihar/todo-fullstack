@@ -3,7 +3,11 @@ import { GrAdd } from "react-icons/gr";
 import CreateTodo from "./CreateTodo";
 
 
-export default function Nav(): JSX.Element {
+type NavProps = {
+  setTask: Function;
+};
+
+export default function Nav({setTask}: NavProps): JSX.Element {
     const [createTodo, setCreateTodo] = useState(false);
 
 
@@ -11,7 +15,7 @@ export default function Nav(): JSX.Element {
         <nav className="flex justify-between h-14 text-3xl font-bold">
             <h2>todo</h2>
             <GrAdd onClick={() => setCreateTodo(!createTodo)} />
-            {createTodo && <CreateTodo createTodo={createTodo} setCreateTodo={setCreateTodo} />}
+            {createTodo && <CreateTodo createTodo={createTodo} setTask={setTask} setCreateTodo={setCreateTodo} />}
         </nav>
     )
 }

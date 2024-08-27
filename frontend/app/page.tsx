@@ -27,7 +27,7 @@ export default function Home() {
   return (
     <UserContextProvider>
       <main className="p-11">
-        <Nav />
+        <Nav setTask={setTasks} />
         <section className="flex">
           <Sidebar />
           <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
