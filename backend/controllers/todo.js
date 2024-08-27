@@ -65,6 +65,7 @@ const deleteTodo = async (req, res) => {
   const _id = req.params.id;
   try {
     const delTodo = await Todo.findOneAndDelete({ _id });
+    const todos = await Todo.find({});
 
     if (!delTodo) {
       return res.status(404).json({
@@ -73,7 +74,7 @@ const deleteTodo = async (req, res) => {
     }
     return res.status(200).json({
       message: "Delete Sucessfull",
-      delTodo,
+      todos,
     });
   } catch (error) {
     return res.status(500).json({
