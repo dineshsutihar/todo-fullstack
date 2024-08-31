@@ -1,4 +1,4 @@
-const Todo = require("../model/Todo");
+const Todo = require("../model/todo");
 
 const saveTodo = async (req, res) => {
   const { title, description } = req.body;
