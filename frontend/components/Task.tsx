@@ -20,7 +20,7 @@ export default function Task({ title, description, unique, status, setTasks }: T
     useEffect(() => {
         const putData = async () => {
             try {
-                const response = await axios.put(`http://localhost:8000/api/v1/${unique}`, {
+                const response = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/${unique}`, {
                     status: done
                 }, {
                     headers: {

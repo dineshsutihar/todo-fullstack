@@ -15,7 +15,7 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/api/v1/");
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/`);
         const data = response.data;
         setTasks(data.todos);
       } catch (error) {

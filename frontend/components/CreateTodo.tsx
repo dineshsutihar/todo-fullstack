@@ -13,7 +13,7 @@ export default function CreateTodo({ createTodo, setCreateTodo, setTask }: Creat
 
     const postTodo = useCallback(async () => {
         try {
-            const response = await axios.post("http://localhost:8000/api/v1/create", {
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/create`, {
                 title,
                 description
             }, {

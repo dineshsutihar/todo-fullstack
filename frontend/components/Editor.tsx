@@ -11,7 +11,7 @@ export default function Editor({ id, setEdit, setTasks }: Edit) {
 
     const deletePost = useCallback(async () => {
         try {
-            const response = await axios.delete(`http://localhost:8000/api/v1/${id}`)
+            const response = await axios.delete(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/${id}`)
             const data = response.data
             console.log(data)
             setTasks(data.todos)
