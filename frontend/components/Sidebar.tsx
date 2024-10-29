@@ -1,6 +1,6 @@
 export default function Sidebar(): JSX.Element {
     return (
-        <aside className="w-52">
+        <aside className="w-52 hidden md:block">
             <nav>
                 <ul className="space-y-4">
                     <li className="flex items-center space-x-2 p-2 rounded-lg shadow">
