@@ -33,13 +33,9 @@ interface EditorProps {
 export default function BentoTask({ title, description, unique, status, setTasks }: TaskProps) {
     const [done, setDone] = useState(status)
     const [edit, setEdit] = useState(false)
-    const [isUpdating, setIsUpdating] = useState(false)
 
     useEffect(() => {
         const putData = async () => {
-            if (isUpdating) return // Prevent unnecessary API calls
-
-            setIsUpdating(true)
             try {
                 const response = await axios.put(
                     `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/${unique}`,
@@ -54,12 +50,10 @@ export default function BentoTask({ title, description, unique, status, setTasks
             } catch (error) {
                 console.error("Error updating task:", error)
                 setDone(!done) // Revert state on error
-            } finally {
-                setIsUpdating(false)
             }
         }
         putData()
-    }, [done, unique, isUpdating])
+    }, [done, unique, setDone])
 
     const calculateRowSpan = useCallback((description?: string) => {
         if (!description) return 1
@@ -106,8 +100,7 @@ export default function BentoTask({ title, description, unique, status, setTasks
                 <Checkbox
                     id={`task-${unique}`}
                     checked={done}
-                    onCheckedChange={() => !isUpdating && setDone(!done)}
-                    disabled={isUpdating}
+                    onCheckedChange={() => setDone(!done)}
                 />
                 <label
                     htmlFor={`task-${unique}`}
