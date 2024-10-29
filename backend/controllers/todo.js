@@ -25,11 +25,14 @@ const updateTodo = async (req, res) => {
       { title, description },
       { new: true }
     );
-    const allTodo = await Todo.find();
+    const currentTodo = {
+      title: updatedTodo.title,
+      description: updatedTodo.description,
+    };
 
     return res
       .status(201)
-      .json({ message: `Sucessfully Updated ${title}`, todos: allTodo });
+      .json({ message: `Sucessfully Updated ${title}`, todos: currentTodo });
   } catch (error) {
     return res.status(500).json({
       message: "Something went Wrong",
