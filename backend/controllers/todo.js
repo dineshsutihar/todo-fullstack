@@ -17,6 +17,27 @@ const saveTodo = async (req, res) => {
   }
 };
 
+const updateTodo = async (req, res) => {
+  const { title, description, id } = req.body;
+  try {
+    const updatedTodo = await Todo.findOneAndUpdate(
+      { _id: id },
+      { title, description },
+      { new: true }
+    );
+    const allTodo = await Todo.find();
+
+    return res
+      .status(201)
+      .json({ message: `Sucessfully Updated ${title}`, todos: allTodo });
+  } catch (error) {
+    return res.status(500).json({
+      message: "Something went Wrong",
+      error: error.message,
+    });
+  }
+};
+
 const getTodo = async (req, res) => {
   try {
     const allTodo = await Todo.find();
@@ -88,4 +109,5 @@ module.exports = {
   getTodo,
   changeStatus,
   deleteTodo,
+  updateTodo,
 };
