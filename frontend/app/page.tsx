@@ -32,7 +32,8 @@ export default function Home() {
         <Nav setTask={setTasks} />
         <section className="flex">
           <Sidebar />
-          <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+          {/* <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6"> */}
+          <section className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6 p-6">
             {
               tasks.length > 0 ? (
                 tasks.map(({ title, status, description, _id }, index) => (

@@ -55,22 +55,9 @@ export default function BentoTask({ title, description, unique, status, setTasks
         putData()
     }, [done, unique, setDone])
 
-    const calculateRowSpan = useCallback((description?: string) => {
-        if (!description) return 1
-        const length = description.length
-        if (length > 400) return 4
-        if (length > 300) return 3
-        if (length > 200) return 2
-        return 1
-    }, [])
-
     return (
         <Card
-            className={`p-4 flex flex-col justify-between overflow-hidden ${done ? 'bg-gray-100 dark:bg-gray-800' : 'bg-yellow-100 dark:bg-yellow-900'
-                }`}
-            style={{
-                gridRowEnd: `span ${calculateRowSpan(description)}`
-            }}
+            className={`p-4 break-inside-avoid ${done ? 'bg-gray-100 dark:bg-gray-800' : 'bg-yellow-100 dark:bg-yellow-900'}`}
         >
             <div>
                 <div className="flex justify-between items-start mb-2">
