@@ -6,13 +6,14 @@ import axios from "axios"
 import { Card } from "@/components/ui/card"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Button } from "@/components/ui/button"
-import { MoreHorizontal, Edit2 } from "lucide-react"
+import { MoreHorizontal, Edit2, Trash, Trash2, Trash2Icon } from "lucide-react"
 import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { LiaTrashAlt } from "react-icons/lia"
 
 interface TaskProps {
     title: string
@@ -83,18 +84,21 @@ export default function BentoTask({ title, description, unique, status, setTasks
                     {description}
                 </p>
             </div>
-            <div className="flex items-center space-x-2">
-                <Checkbox
-                    id={`task-${unique}`}
-                    checked={done}
-                    onCheckedChange={() => setDone(!done)}
-                />
-                <label
-                    htmlFor={`task-${unique}`}
-                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
-                    Mark as done
-                </label>
+            <div className="flex justify-between">
+                <div className="flex items-center space-x-2">
+                    <Checkbox
+                        id={`task-${unique}`}
+                        checked={done}
+                        onCheckedChange={() => setDone(!done)}
+                    />
+                    <label
+                        htmlFor={`task-${unique}`}
+                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    >
+                        Mark as done
+                    </label>
+                </div>
+                <Trash2Icon className="hover:text-red-600" />
             </div>
             {edit && (
                 <Editor
